@@ -9,17 +9,19 @@
 /* Begin PBXBuildFile section */
 		806B903527B75F8D0046961B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B903427B75F8D0046961B /* AppDelegate.swift */; };
 		806B903727B75F8D0046961B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B903627B75F8D0046961B /* SceneDelegate.swift */; };
-		806B903927B75F8D0046961B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B903827B75F8D0046961B /* ViewController.swift */; };
+		806B903927B75F8D0046961B /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B903827B75F8D0046961B /* LandingViewController.swift */; };
 		806B903E27B75F900046961B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 806B903D27B75F900046961B /* Assets.xcassets */; };
+		806B904C27B765A90046961B /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B904B27B765A90046961B /* LandingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		806B903127B75F8D0046961B /* Modern UICollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Modern UICollectionView.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		806B903427B75F8D0046961B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		806B903627B75F8D0046961B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		806B903827B75F8D0046961B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		806B903827B75F8D0046961B /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		806B903D27B75F900046961B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		806B904227B75F900046961B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		806B904B27B765A90046961B /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +74,18 @@
 		806B904927B75FBA0046961B /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
-				806B903827B75F8D0046961B /* ViewController.swift */,
+				806B904A27B765980046961B /* Landing */,
 			);
 			path = "User Interface";
+			sourceTree = "<group>";
+		};
+		806B904A27B765980046961B /* Landing */ = {
+			isa = PBXGroup;
+			children = (
+				806B904B27B765A90046961B /* LandingView.swift */,
+				806B903827B75F8D0046961B /* LandingViewController.swift */,
+			);
+			path = Landing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,7 +157,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				806B903927B75F8D0046961B /* ViewController.swift in Sources */,
+				806B904C27B765A90046961B /* LandingView.swift in Sources */,
+				806B903927B75F8D0046961B /* LandingViewController.swift in Sources */,
 				806B903527B75F8D0046961B /* AppDelegate.swift in Sources */,
 				806B903727B75F8D0046961B /* SceneDelegate.swift in Sources */,
 			);

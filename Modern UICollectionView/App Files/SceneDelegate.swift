@@ -1,7 +1,11 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    // MARK: - UIWindowSceneDelegate Properties
+
     var window: UIWindow?
+
+    // MARK: - UIWindowSceneDelegate Methods
 
     func scene(
         _ scene: UIScene,
@@ -13,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = ViewController(nibName: nil, bundle: nil)
+        window?.rootViewController = UINavigationController(rootViewController: LandingViewController())
         window?.makeKeyAndVisible()
     }
 }
