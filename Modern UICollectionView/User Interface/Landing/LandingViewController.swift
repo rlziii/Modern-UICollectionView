@@ -36,7 +36,7 @@ class LandingViewController: UIViewController {
     // MARK: - Private Methods
 
     private func oldCollectionViewButtonTapped() {
-        print("old")
+        show(OldViewController(), sender: self)
     }
 
     private func modernCollectionViewButtonTapped() {
