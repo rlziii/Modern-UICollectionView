@@ -40,6 +40,6 @@ class LandingViewController: UIViewController {
     }
 
     private func modernCollectionViewButtonTapped() {
-        print("modern")
+        show(NewViewController(), sender: self)
     }
 }

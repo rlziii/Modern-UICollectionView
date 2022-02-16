@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8018DA7627BCBA7300707A58 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018DA7527BCBA7300707A58 /* NewViewController.swift */; };
+		8018DA7827BCBA9300707A58 /* NewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018DA7727BCBA9300707A58 /* NewView.swift */; };
 		806B903527B75F8D0046961B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B903427B75F8D0046961B /* AppDelegate.swift */; };
 		806B903727B75F8D0046961B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B903627B75F8D0046961B /* SceneDelegate.swift */; };
 		806B903927B75F8D0046961B /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B903827B75F8D0046961B /* LandingViewController.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8018DA7527BCBA7300707A58 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
+		8018DA7727BCBA9300707A58 /* NewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewView.swift; sourceTree = "<group>"; };
 		806B903127B75F8D0046961B /* Modern UICollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Modern UICollectionView.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		806B903427B75F8D0046961B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		806B903627B75F8D0046961B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 		806B904E27BB1E680046961B /* New */ = {
 			isa = PBXGroup;
 			children = (
+				8018DA7527BCBA7300707A58 /* NewViewController.swift */,
+				8018DA7727BCBA9300707A58 /* NewView.swift */,
 			);
 			path = New;
 			sourceTree = "<group>";
@@ -196,9 +202,11 @@
 				806B905827BB2E870046961B /* OldCollectionViewDataSource.swift in Sources */,
 				806B903927B75F8D0046961B /* LandingViewController.swift in Sources */,
 				806B905A27BB2EA60046961B /* OldView.swift in Sources */,
+				8018DA7627BCBA7300707A58 /* NewViewController.swift in Sources */,
 				806B903527B75F8D0046961B /* AppDelegate.swift in Sources */,
 				806B905627BB2E670046961B /* OldCollectionViewCell.swift in Sources */,
 				806B903727B75F8D0046961B /* SceneDelegate.swift in Sources */,
+				8018DA7827BCBA9300707A58 /* NewView.swift in Sources */,
 				806B905227BB2E370046961B /* PokemonGeneration.swift in Sources */,
 				806B905427BB2E4E0046961B /* OldCollectionViewHeader.swift in Sources */,
 			);
