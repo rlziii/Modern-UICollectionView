@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "oshawott.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

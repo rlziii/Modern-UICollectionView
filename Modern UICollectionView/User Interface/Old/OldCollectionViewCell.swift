@@ -7,7 +7,7 @@ class OldCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Private Properties
 
-    private let label = UILabel(frame: .zero)
+    private let imageView = UIImageView(image: nil)
 
     // MARK: - Initialization
 
@@ -22,28 +22,29 @@ class OldCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Public Methods
 
-    func configure(with text: String) {
-        label.text = text
+    func configure(with image: UIImage) {
+        imageView.image = image
     }
 
     // MARK: - Private Methods
 
     private func setupViews() {
-        setupLabel()
+        setupImageView()
         setupConstraints()
     }
 
-    private func setupLabel() {
-        label.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(label)
+    private func setupImageView() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        contentView.addSubview(imageView)
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: topAnchor),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: 50),
+            imageView.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
 }

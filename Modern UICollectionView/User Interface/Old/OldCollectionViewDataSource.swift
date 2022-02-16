@@ -11,7 +11,7 @@ class OldCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        pokemonGenerations[section].starters.count
+        starters(for: section).count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -21,8 +21,8 @@ class OldCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         )
 
         if let cell = cell as? OldCollectionViewCell {
-            let starter = pokemonGenerations[indexPath.section].starters[indexPath.row]
-            cell.configure(with: starter)
+            let pokemonImage = pokemonImage(for: indexPath)
+            cell.configure(with: pokemonImage)
         }
 
         return cell
@@ -36,10 +36,26 @@ class OldCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         )
 
         if let header = header as? OldCollectionViewHeader {
-            let region = pokemonGenerations[indexPath.section].region
+            let region = region(for: indexPath.section)
             header.configure(with: region)
         }
 
         return header
+    }
+
+    // MARK: - Private Properties
+
+    private func starters(for section: Int) -> [String] {
+        pokemonGenerations[section].starters
+    }
+
+    private func pokemonImage(for indexPath: IndexPath) -> UIImage {
+        let pokemonName = starters(for: indexPath.section)[indexPath.row]
+        let imageName = pokemonName.lowercased()
+        return UIImage(named: imageName)!
+    }
+
+    private func region(for section: Int) -> String {
+        pokemonGenerations[section].region
     }
 }

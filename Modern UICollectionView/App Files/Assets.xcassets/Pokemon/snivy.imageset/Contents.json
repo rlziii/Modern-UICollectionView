@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "snivy.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

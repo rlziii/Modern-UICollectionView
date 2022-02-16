@@ -30,7 +30,17 @@ class OldView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        collectionViewLayout.headerReferenceSize = CGSize(width: bounds.width, height: 44)
+        if collectionViewLayout.headerReferenceSize == .zero {
+            collectionViewLayout.headerReferenceSize = CGSize(width: bounds.width, height: 44)
+        }
+
+        // A hack to "center" the UICollectionViewLayout.
+        if collectionViewLayout.sectionInset == .zero {
+            let itemsWidth = CGFloat(3) * 50
+            let spacing = CGFloat(2) * collectionViewLayout.minimumInteritemSpacing
+            let horizontalInset = (bounds.width - itemsWidth - spacing) / 2
+            collectionViewLayout.sectionInset = .init(top: 10, left: horizontalInset, bottom: 40, right: horizontalInset)
+        }
     }
 
     // MARK: - Private Properties
@@ -58,7 +68,7 @@ class OldView: UIView {
         )
 
         collectionViewLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        collectionViewLayout.minimumInteritemSpacing = 20
+        collectionViewLayout.minimumInteritemSpacing = 50
 
         addSubview(collectionView)
     }
