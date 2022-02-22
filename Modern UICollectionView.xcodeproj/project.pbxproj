@@ -16,7 +16,6 @@
 		806B904C27B765A90046961B /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B904B27B765A90046961B /* LandingView.swift */; };
 		806B905027BB1E8E0046961B /* OldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B904F27BB1E8E0046961B /* OldViewController.swift */; };
 		806B905227BB2E370046961B /* PokemonGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B905127BB2E370046961B /* PokemonGeneration.swift */; };
-		806B905427BB2E4E0046961B /* OldCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B905327BB2E4E0046961B /* OldCollectionViewHeader.swift */; };
 		806B905627BB2E670046961B /* OldCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B905527BB2E670046961B /* OldCollectionViewCell.swift */; };
 		806B905827BB2E870046961B /* OldCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B905727BB2E870046961B /* OldCollectionViewDataSource.swift */; };
 		806B905A27BB2EA60046961B /* OldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B905927BB2EA60046961B /* OldView.swift */; };
@@ -34,7 +33,6 @@
 		806B904B27B765A90046961B /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		806B904F27BB1E8E0046961B /* OldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldViewController.swift; sourceTree = "<group>"; };
 		806B905127BB2E370046961B /* PokemonGeneration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonGeneration.swift; sourceTree = "<group>"; };
-		806B905327BB2E4E0046961B /* OldCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldCollectionViewHeader.swift; sourceTree = "<group>"; };
 		806B905527BB2E670046961B /* OldCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldCollectionViewCell.swift; sourceTree = "<group>"; };
 		806B905727BB2E870046961B /* OldCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		806B905927BB2EA60046961B /* OldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldView.swift; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 			children = (
 				806B905527BB2E670046961B /* OldCollectionViewCell.swift */,
 				806B905727BB2E870046961B /* OldCollectionViewDataSource.swift */,
-				806B905327BB2E4E0046961B /* OldCollectionViewHeader.swift */,
 				806B905927BB2EA60046961B /* OldView.swift */,
 				806B904F27BB1E8E0046961B /* OldViewController.swift */,
 				806B905127BB2E370046961B /* PokemonGeneration.swift */,
@@ -208,7 +205,6 @@
 				806B903727B75F8D0046961B /* SceneDelegate.swift in Sources */,
 				8018DA7827BCBA9300707A58 /* NewView.swift in Sources */,
 				806B905227BB2E370046961B /* PokemonGeneration.swift in Sources */,
-				806B905427BB2E4E0046961B /* OldCollectionViewHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

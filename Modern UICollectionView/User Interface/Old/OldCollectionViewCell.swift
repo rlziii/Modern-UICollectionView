@@ -1,18 +1,19 @@
 import UIKit
 
-class OldCollectionViewCell: UICollectionViewCell {
+class OldTableViewCell: UITableViewCell {
     // MARK: - Type Properties
 
-    static var reuseIdentifier: String { String(describing: OldCollectionViewCell.self) }
+    static var reuseIdentifier: String { String(describing: OldTableViewCell.self) }
 
     // MARK: - Private Properties
 
-    private let imageView = UIImageView(image: nil)
+    private let leadingImageView = UIImageView(image: nil)
+    private let trailingLabel = UILabel(frame: .zero)
 
     // MARK: - Initialization
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         setupViews()
     }
@@ -22,29 +23,42 @@ class OldCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Public Methods
 
-    func configure(with image: UIImage) {
-        imageView.image = image
+    func configure(name: String, image: UIImage) {
+        trailingLabel.text = name
+        leadingImageView.image = image
     }
 
     // MARK: - Private Methods
 
     private func setupViews() {
-        setupImageView()
+        setupLeadingImageView()
+        setupTrailingLabel()
         setupConstraints()
     }
 
-    private func setupImageView() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        contentView.addSubview(imageView)
+    private func setupLeadingImageView() {
+        leadingImageView.translatesAutoresizingMaskIntoConstraints = false
+        leadingImageView.contentMode = .scaleAspectFit
+        contentView.addSubview(leadingImageView)
+    }
+
+    private func setupTrailingLabel() {
+        trailingLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(trailingLabel)
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 50),
-            imageView.heightAnchor.constraint(equalToConstant: 50),
+            leadingImageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            leadingImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            leadingImageView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
+            leadingImageView.widthAnchor.constraint(equalToConstant: 44),
+            leadingImageView.heightAnchor.constraint(equalToConstant: 44),
+
+            trailingLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            trailingLabel.leadingAnchor.constraint(equalTo: leadingImageView.trailingAnchor, constant: 16),
+            trailingLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            trailingLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
         ])
     }
 }

@@ -3,8 +3,7 @@ import UIKit
 class OldView: UIView {
     // MARK: - Private Properties
 
-    private lazy var collectionViewLayout = UICollectionViewFlowLayout()
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+    private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped)
 
     // MARK: - Initialization
 
@@ -21,26 +20,8 @@ class OldView: UIView {
 
     // MARK: - Public Methods
 
-    func setupCollectionViewDataSource(_ dataSource: UICollectionViewDataSource) {
-        collectionView.dataSource = dataSource
-    }
-
-    // MARK: - UIView Methods
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        if collectionViewLayout.headerReferenceSize == .zero {
-            collectionViewLayout.headerReferenceSize = CGSize(width: bounds.width, height: 44)
-        }
-
-        // A hack to "center" the UICollectionViewLayout.
-        if collectionViewLayout.sectionInset == .zero {
-            let itemsWidth = CGFloat(3) * 50
-            let spacing = CGFloat(2) * collectionViewLayout.minimumInteritemSpacing
-            let horizontalInset = (bounds.width - itemsWidth - spacing) / 2
-            collectionViewLayout.sectionInset = .init(top: 10, left: horizontalInset, bottom: 40, right: horizontalInset)
-        }
+    func setupTableViewDataSource(_ dataSource: UITableViewDataSource) {
+        tableView.dataSource = dataSource
     }
 
     // MARK: - Private Properties
@@ -50,35 +31,28 @@ class OldView: UIView {
     }
 
     private func setupSubviews() {
-        setupCollectionView()
+        setupTableView()
     }
 
-    private func setupCollectionView() {
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+    private func setupTableView() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
 
-        collectionView.register(
-            OldCollectionViewCell.self,
-            forCellWithReuseIdentifier: OldCollectionViewCell.reuseIdentifier
+        tableView.register(
+            OldTableViewCell.self,
+            forCellReuseIdentifier: OldTableViewCell.reuseIdentifier
         )
 
-        collectionView.register(
-            OldCollectionViewHeader.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: OldCollectionViewHeader.reuseIdentifier
-        )
+        tableView.estimatedRowHeight = 44
 
-        collectionViewLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        collectionViewLayout.minimumInteritemSpacing = 50
-
-        addSubview(collectionView)
+        addSubview(tableView)
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
     }
 }

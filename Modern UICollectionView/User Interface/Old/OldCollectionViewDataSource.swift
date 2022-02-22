@@ -1,46 +1,36 @@
 import UIKit
 
-class OldCollectionViewDataSource: NSObject, UICollectionViewDataSource {
+class OldTableViewDataSource: NSObject, UITableViewDataSource {
     // MARK: - Private Properties
     private let pokemonGenerations = PokemonGeneration.allCases
 
-    // MARK: - UICollectionViewDataSource Methods
+    // MARK: - UITableViewDataSource Methods
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         pokemonGenerations.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         starters(for: section).count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: OldCollectionViewCell.reuseIdentifier,
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: OldTableViewCell.reuseIdentifier,
             for: indexPath
         )
 
-        if let cell = cell as? OldCollectionViewCell {
-            let pokemonImage = pokemonImage(for: indexPath)
-            cell.configure(with: pokemonImage)
+        if let cell = cell as? OldTableViewCell {
+            let pokemonName = pokemonName(for: indexPath)
+            let pokemonImage = pokemonImage(for: pokemonName)
+            cell.configure(name: pokemonName, image: pokemonImage)
         }
 
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(
-            ofKind: kind,
-            withReuseIdentifier: OldCollectionViewHeader.reuseIdentifier,
-            for: indexPath
-        )
-
-        if let header = header as? OldCollectionViewHeader {
-            let region = region(for: indexPath.section)
-            header.configure(with: region)
-        }
-
-        return header
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        region(for: section)
     }
 
     // MARK: - Private Properties
@@ -49,10 +39,12 @@ class OldCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         pokemonGenerations[section].starters
     }
 
-    private func pokemonImage(for indexPath: IndexPath) -> UIImage {
-        let pokemonName = starters(for: indexPath.section)[indexPath.row]
-        let imageName = pokemonName.lowercased()
-        return UIImage(named: imageName)!
+    private func pokemonName(for indexPath: IndexPath) -> String {
+        starters(for: indexPath.section)[indexPath.row]
+    }
+
+    private func pokemonImage(for name: String) -> UIImage {
+        return UIImage(named: name.lowercased())!
     }
 
     private func region(for section: Int) -> String {

@@ -4,8 +4,8 @@ class LandingView: UIView {
     // MARK: - Private Properties
 
     private let stackView = UIStackView(frame: .zero)
-    private let oldCollectionViewButton = UIButton(type: .system)
-    private let modernCollectionViewButton = UIButton(type: .system)
+    private let tableViewButton = UIButton(type: .system)
+    private let collectionViewButton = UIButton(type: .system)
 
     private var buttonAction: ((Action) -> Void)?
 
@@ -36,32 +36,32 @@ class LandingView: UIView {
 
     private func setupSubviews() {
         setupStackView()
-        setupOldCollectionViewButton()
-        setupModernCollectionViewButton()
+        setupTableViewButton()
+        setupCollectionViewButton()
     }
 
     private func setupStackView() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         addSubview(stackView)
-        stackView.addArrangedSubview(oldCollectionViewButton)
-        stackView.addArrangedSubview(modernCollectionViewButton)
+        stackView.addArrangedSubview(tableViewButton)
+        stackView.addArrangedSubview(collectionViewButton)
     }
 
-    private func setupOldCollectionViewButton() {
-        oldCollectionViewButton.translatesAutoresizingMaskIntoConstraints = false
-        oldCollectionViewButton.setTitle("Old UICollectionView", for: .normal)
-        oldCollectionViewButton.addAction(.init(handler: { [weak self] _ in
-            self?.buttonAction?(.oldCollectionViewButtonTapped)
+    private func setupTableViewButton() {
+        tableViewButton.translatesAutoresizingMaskIntoConstraints = false
+        tableViewButton.setTitle("Old-Style UITableView", for: .normal)
+        tableViewButton.addAction(.init(handler: { [weak self] _ in
+            self?.buttonAction?(.tableViewButtonTapped)
         }), for: .touchUpInside)
 
     }
 
-    private func setupModernCollectionViewButton() {
-        modernCollectionViewButton.translatesAutoresizingMaskIntoConstraints = false
-        modernCollectionViewButton.setTitle("Modern UICollectionView", for: .normal)
-        modernCollectionViewButton.addAction(.init(handler: { [weak self] _ in
-            self?.buttonAction?(.modernCollectionViewButtonTapped)
+    private func setupCollectionViewButton() {
+        collectionViewButton.translatesAutoresizingMaskIntoConstraints = false
+        collectionViewButton.setTitle("List-Style UICollectionView", for: .normal)
+        collectionViewButton.addAction(.init(handler: { [weak self] _ in
+            self?.buttonAction?(.collectionViewButtonTapped)
         }), for: .touchUpInside)
     }
 
@@ -77,7 +77,7 @@ class LandingView: UIView {
 
 extension LandingView {
     enum Action {
-        case oldCollectionViewButtonTapped
-        case modernCollectionViewButtonTapped
+        case tableViewButtonTapped
+        case collectionViewButtonTapped
     }
 }

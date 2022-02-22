@@ -4,7 +4,7 @@ class OldViewController: UIViewController {
     // MARK: - Private Properties
 
     private lazy var oldView = OldView()
-    private let dataSource = OldCollectionViewDataSource()
+    private let dataSource = OldTableViewDataSource()
 
     // MARK: - Initialization
 
@@ -24,6 +24,6 @@ class OldViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        oldView.setupCollectionViewDataSource(dataSource)
+        oldView.setupTableViewDataSource(dataSource)
     }
 }

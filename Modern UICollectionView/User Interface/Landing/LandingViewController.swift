@@ -25,21 +25,21 @@ class LandingViewController: UIViewController {
 
         landingView.setupButtonActions { [unowned self] action in
             switch action {
-            case .oldCollectionViewButtonTapped:
-                oldCollectionViewButtonTapped()
-            case .modernCollectionViewButtonTapped:
-                modernCollectionViewButtonTapped()
+            case .tableViewButtonTapped:
+                tableViewButtonTapped()
+            case .collectionViewButtonTapped:
+                collectionViewButtonTapped()
             }
         }
     }
 
     // MARK: - Private Methods
 
-    private func oldCollectionViewButtonTapped() {
+    private func tableViewButtonTapped() {
         show(OldViewController(), sender: self)
     }
 
-    private func modernCollectionViewButtonTapped() {
+    private func collectionViewButtonTapped() {
         show(NewViewController(), sender: self)
     }
 }
