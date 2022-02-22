@@ -1,6 +1,6 @@
 import UIKit
 
-class OldView: UIView {
+class OldTodoListView: UIView {
     // MARK: - Private Properties
 
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -24,6 +24,10 @@ class OldView: UIView {
         tableView.dataSource = dataSource
     }
 
+    func reloadTableView() {
+        tableView.reloadData()
+    }
+
     // MARK: - Private Properties
 
     private func setupSelf() {
@@ -38,10 +42,11 @@ class OldView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         tableView.register(
-            OldTableViewCell.self,
-            forCellReuseIdentifier: OldTableViewCell.reuseIdentifier
+            TodoItemTableViewCell.self,
+            forCellReuseIdentifier: TodoItemTableViewCell.reuseIdentifier
         )
 
+        tableView.allowsSelection = false
         tableView.estimatedRowHeight = 44
 
         addSubview(tableView)
