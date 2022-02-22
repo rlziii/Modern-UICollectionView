@@ -51,6 +51,7 @@ class CreateTodoItemView: UIView {
     private func setupStackView() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.spacing = UIStackView.spacingUseSystem
         addSubview(stackView)
         stackView.addArrangedSubview(titleTextField)
         stackView.addArrangedSubview(iconSegmentedControl)
@@ -60,7 +61,7 @@ class CreateTodoItemView: UIView {
 
     private func setupTitleTextField() {
         titleTextField.translatesAutoresizingMaskIntoConstraints = false
-        titleTextField.placeholder = "Title"
+        titleTextField.placeholder = "Todo Item Title"
         titleTextField.borderStyle = .roundedRect
         titleTextField.addAction(.init(handler: { [unowned self] _ in
             saveButton.isEnabled = !(titleTextField.text?.isEmpty ?? true)
@@ -81,7 +82,7 @@ class CreateTodoItemView: UIView {
         favoriteStackView.translatesAutoresizingMaskIntoConstraints = false
         favoriteStackView.alignment = .center
         favoriteStackView.distribution = .fillEqually
-        favoriteStackView.spacing = 16
+        favoriteStackView.spacing = UIStackView.spacingUseSystem
         favoriteStackView.addArrangedSubview(favoriteLabel)
         favoriteStackView.addArrangedSubview(favoriteToggle)
     }
