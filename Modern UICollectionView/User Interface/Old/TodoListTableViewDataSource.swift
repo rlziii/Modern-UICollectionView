@@ -2,26 +2,36 @@ import UIKit
 
 class TodoListTableViewDataSource: NSObject, UITableViewDataSource {
     // MARK: - Private Properties
-    private var todoItems = [TodoItem]()
-    private var nonFavoriteTodoItems: [TodoItem] { todoItems.filter(\.isNotFavorite) }
-    private var favoriteTodoItems: [TodoItem] { todoItems.filter(\.isFavorite) }
+    private var favoriteTodoItems = [TodoItem]()
+    private var nonFavoriteTodoItems = [TodoItem]()
 
     private var hasFavorites: Bool { !favoriteTodoItems.isEmpty }
 
     // MARK: - Public Methods
 
     func addTodoItem(_ todoItem: TodoItem) {
-        todoItems.append(todoItem)
+        if todoItem.isFavorite {
+            favoriteTodoItems.append(todoItem)
+        } else {
+            nonFavoriteTodoItems.append(todoItem)
+        }
     }
 
     // MARK: - UITableViewDataSource Methods
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        hasFavorites ? 2 : 1
+        2
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        todoItems(for: section).count
+        switch section {
+        case 0:
+            return favoriteTodoItems.count
+        case 1:
+            return nonFavoriteTodoItems.count
+        case _:
+            invalidSection(section)
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,49 +52,50 @@ class TodoListTableViewDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if hasFavorites {
-            switch section {
-            case 0:
-                return "Favorites"
-            case 1:
-                return "Todo Items"
-            case _:
-                invalidSection(section)
-            }
-        } else {
-            switch section {
-            case 0:
-                return "Todo Items"
-            case _:
-                invalidSection(section)
-            }
+        switch section {
+        case 0:
+            return favoriteTodoItems.isEmpty ? nil : "Favorites"
+        case 1:
+            return "Todo Items"
+        case _:
+            invalidSection(section)
+        }
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            deleteTodoItem(at: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        case .insert, .none:
+            break // Not supported.
+        @unknown default:
+            break // Not supported.
         }
     }
 
     // MARK: Private Methods
 
-    private func todoItems(for section: Int) -> [TodoItem] {
-        if hasFavorites {
-            switch section {
-            case 0:
-                return favoriteTodoItems
-            case 1:
-                return nonFavoriteTodoItems
-            case _:
-                invalidSection(section)
-            }
-        } else {
-            switch section {
-            case 0:
-                return nonFavoriteTodoItems
-            case _:
-                invalidSection(section)
-            }
+    private func todoItem(for indexPath: IndexPath) -> TodoItem {
+        switch indexPath.section {
+        case 0:
+            return favoriteTodoItems[indexPath.row]
+        case 1:
+            return nonFavoriteTodoItems[indexPath.row]
+        case _:
+            invalidSection(indexPath.section)
         }
     }
 
-    private func todoItem(for indexPath: IndexPath) -> TodoItem {
-        todoItems(for: indexPath.section)[indexPath.row]
+    private func deleteTodoItem(at indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            favoriteTodoItems.remove(at: indexPath.row)
+        case 1:
+            nonFavoriteTodoItems.remove(at: indexPath.row)
+        case _:
+            invalidSection(indexPath.section)
+        }
     }
 
     private func invalidSection(_ section: Int) -> Never {

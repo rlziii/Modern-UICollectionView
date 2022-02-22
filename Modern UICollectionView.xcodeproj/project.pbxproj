@@ -92,8 +92,8 @@
 		806B903327B75F8D0046961B /* Modern UICollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				8018DA8527C4840D00707A58 /* Model */,
 				806B904827B75FB40046961B /* App Files */,
+				8018DA8527C4840D00707A58 /* Model */,
 				806B904927B75FBA0046961B /* User Interface */,
 			);
 			path = "Modern UICollectionView";
