@@ -1,6 +1,6 @@
 import Foundation
 
-struct TodoItem: Identifiable {
+struct TodoItem: Identifiable, Hashable {
     let id: UUID
     let title: String
     let icon: Icon

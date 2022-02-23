@@ -2,6 +2,7 @@ import UIKit
 
 class TodoListTableViewDataSource: NSObject, UITableViewDataSource {
     // MARK: - Private Properties
+
     private var favoriteTodoItems = [TodoItem]()
     private var nonFavoriteTodoItems = [TodoItem]()
 

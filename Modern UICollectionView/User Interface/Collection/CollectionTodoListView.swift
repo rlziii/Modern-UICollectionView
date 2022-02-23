@@ -3,19 +3,15 @@ import UIKit
 class CollectionTodoListView: UIView {
     // MARK: - Private Properties
 
-    private lazy var collectionViewLayout: UICollectionViewCompositionalLayout = {
-        let item = NSCollectionLayoutItem(layoutSize: .init(
-            widthDimension: .fractionalWidth(0.2),
-            heightDimension: .fractionalWidth(1.0)
-        ))
-        let group = NSCollectionLayoutGroup(layoutSize: .init(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalWidth(0.2)
-        ))
-        let section = NSCollectionLayoutSection(group: group)
-        return UICollectionViewCompositionalLayout(section: section)
+    private lazy var collectionViewLayout: UICollectionViewLayout = {
+        UICollectionViewCompositionalLayout { section, layoutEnvironment in
+            var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+            config.headerMode = .firstItemInSection
+            return NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
+        }
     }()
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+
+    private(set) lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
 
     // MARK: - Initialization
 
@@ -46,6 +42,7 @@ class CollectionTodoListView: UIView {
 
     private func setupCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.allowsSelection = false
         addSubview(collectionView)
     }
 
