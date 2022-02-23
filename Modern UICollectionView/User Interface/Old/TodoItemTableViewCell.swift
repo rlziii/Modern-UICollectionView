@@ -62,16 +62,14 @@ class TodoItemTableViewCell: UITableViewCell {
             leadingImageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
             leadingImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             leadingImageView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
-            leadingImageView.widthAnchor.constraint(equalToConstant: 30),
-            leadingImageView.heightAnchor.constraint(equalToConstant: 30),
+            leadingImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 30),
+            leadingImageView.widthAnchor.constraint(equalTo: leadingImageView.heightAnchor),
 
-            centerLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            centerLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             centerLabel.leadingAnchor.constraint(equalTo: leadingImageView.trailingAnchor, constant: 8),
-            centerLabel.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
 
-            trailingImageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            trailingImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             trailingImageView.leadingAnchor.constraint(equalTo: centerLabel.trailingAnchor, constant: 8),
-            trailingImageView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
             trailingImageView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
         ])
     }

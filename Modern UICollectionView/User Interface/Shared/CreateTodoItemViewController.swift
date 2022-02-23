@@ -39,6 +39,12 @@ class CreateTodoItemViewController: UIViewController {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        createTodoItemView.makeTitleTextFieldActive()
+    }
+
     // MARK: - Private Methods
 
     private func saveButtonTapped(with createTodoInfo: CreateTodoInfo) {

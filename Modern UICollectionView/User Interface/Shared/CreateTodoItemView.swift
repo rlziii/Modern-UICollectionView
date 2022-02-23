@@ -32,6 +32,10 @@ class CreateTodoItemView: UIView {
         self.buttonAction = buttonAction
     }
 
+    func makeTitleTextFieldActive() {
+        titleTextField.becomeFirstResponder()
+    }
+
     // MARK: - Private Methods
 
     private func setupSelf() {
