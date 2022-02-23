@@ -1,6 +1,6 @@
 import UIKit
 
-class OldTodoListView: UIView {
+class TableTodoListView: UIView {
     // MARK: - Private Properties
 
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped)

@@ -1,9 +1,9 @@
 import UIKit
 
-class NewViewController: UIViewController {
+class CollectionTodoListViewController: UIViewController {
     // MARK: - Private Properties
 
-    private lazy var newView = NewView()
+    private lazy var collectionTodoListView = CollectionTodoListView()
 
     // MARK: - Initialization
 
@@ -17,7 +17,7 @@ class NewViewController: UIViewController {
     // MARK: - UIViewController Methods
 
     override func loadView() {
-        view = newView
+        view = collectionTodoListView
     }
 
     override func viewDidLoad() {

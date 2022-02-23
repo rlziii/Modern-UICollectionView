@@ -1,6 +1,6 @@
 import UIKit
 
-class NewView: UIView {
+class CollectionTodoListView: UIView {
     // MARK: - Private Properties
 
     private lazy var collectionViewLayout: UICollectionViewCompositionalLayout = {

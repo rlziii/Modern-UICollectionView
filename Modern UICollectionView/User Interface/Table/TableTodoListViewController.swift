@@ -1,9 +1,9 @@
 import UIKit
 
-class OldTodoListViewController: UIViewController {
+class TableTodoListViewController: UIViewController {
     // MARK: - Private Properties
 
-    private lazy var oldTodoListView = OldTodoListView()
+    private lazy var tableTodoListView = TableTodoListView()
     private let dataSource = TodoListTableViewDataSource()
 
     // MARK: - Initialization
@@ -18,7 +18,7 @@ class OldTodoListViewController: UIViewController {
     // MARK: - UIViewController Methods
 
     override func loadView() {
-        view = oldTodoListView
+        view = tableTodoListView
     }
 
     override func viewDidLoad() {
@@ -26,7 +26,7 @@ class OldTodoListViewController: UIViewController {
 
         title = "Todo List"
 
-        oldTodoListView.setupTableViewDataSource(dataSource)
+        tableTodoListView.setupTableViewDataSource(dataSource)
 
         navigationItem.rightBarButtonItem = .init(
             systemItem: .add,
@@ -38,6 +38,6 @@ class OldTodoListViewController: UIViewController {
 
     private func saveTodoItem(_ todoItem: TodoItem) {
         dataSource.addTodoItem(todoItem)
-        oldTodoListView.reloadTableView()
+        tableTodoListView.reloadTableView()
     }
 }

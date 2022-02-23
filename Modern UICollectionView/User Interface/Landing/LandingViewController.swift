@@ -36,10 +36,10 @@ class LandingViewController: UIViewController {
     // MARK: - Private Methods
 
     private func tableViewButtonTapped() {
-        show(OldTodoListViewController(), sender: self)
+        show(TableTodoListViewController(), sender: self)
     }
 
     private func collectionViewButtonTapped() {
-        show(NewViewController(), sender: self)
+        show(CollectionTodoListViewController(), sender: self)
     }
 }
