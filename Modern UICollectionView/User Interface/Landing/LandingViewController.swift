@@ -23,6 +23,8 @@ class LandingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Modern UICollectionView"
+
         landingView.setupButtonActions { [unowned self] action in
             switch action {
             case .tableViewButtonTapped:

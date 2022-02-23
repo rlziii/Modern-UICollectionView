@@ -43,6 +43,7 @@ class LandingView: UIView {
     private func setupStackView() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.spacing = UIStackView.spacingUseSystem
         addSubview(stackView)
         stackView.addArrangedSubview(tableViewButton)
         stackView.addArrangedSubview(collectionViewButton)
@@ -50,7 +51,9 @@ class LandingView: UIView {
 
     private func setupTableViewButton() {
         tableViewButton.translatesAutoresizingMaskIntoConstraints = false
-        tableViewButton.setTitle("Old-Style UITableView", for: .normal)
+        var configuration = UIButton.Configuration.borderedProminent()
+        configuration.title = "Old-Style UITableView"
+        tableViewButton.configuration = configuration
         tableViewButton.addAction(.init(handler: { [weak self] _ in
             self?.buttonAction?(.tableViewButtonTapped)
         }), for: .touchUpInside)
@@ -59,7 +62,9 @@ class LandingView: UIView {
 
     private func setupCollectionViewButton() {
         collectionViewButton.translatesAutoresizingMaskIntoConstraints = false
-        collectionViewButton.setTitle("List-Style UICollectionView", for: .normal)
+        var configuration = UIButton.Configuration.borderedProminent()
+        configuration.title = "List-Style UICollectionView"
+        collectionViewButton.configuration = configuration
         collectionViewButton.addAction(.init(handler: { [weak self] _ in
             self?.buttonAction?(.collectionViewButtonTapped)
         }), for: .touchUpInside)
