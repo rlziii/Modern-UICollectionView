@@ -73,10 +73,27 @@ class TodoListCollectionViewDataSource {
 
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
+
+    func deleteTodoItem(at indexPath: IndexPath) {
+        let section = Section(rawValue: indexPath.section)
+
+        switch section {
+        case .favorites:
+            // Subtract one to accommodate header.
+            favoriteTodoItems.remove(at: indexPath.item - 1)
+        case .nonFavorites:
+            // Subtract one to accommodate header.
+            nonFavoriteTodoItems.remove(at: indexPath.item - 1)
+        case .none:
+            break // Do nothing.
+        }
+
+        updateData()
+    }
 }
 
 private extension TodoListCollectionViewDataSource {
-    enum Section: CaseIterable {
+    enum Section: Int, CaseIterable {
         case favorites
         case nonFavorites
     }

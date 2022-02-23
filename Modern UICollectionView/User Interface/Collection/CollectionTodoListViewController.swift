@@ -33,6 +33,8 @@ class CollectionTodoListViewController: UIViewController {
             })
         )
 
+        collectionTodoListView.configureDeleteAction(collectionViewDataSource.deleteTodoItem(at:))
+
         // Seed section data.
         collectionViewDataSource.updateData(animatingDifferences: false)
     }

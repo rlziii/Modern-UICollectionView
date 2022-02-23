@@ -4,14 +4,25 @@ class CollectionTodoListView: UIView {
     // MARK: - Private Properties
 
     private lazy var collectionViewLayout: UICollectionViewLayout = {
-        UICollectionViewCompositionalLayout { section, layoutEnvironment in
+        UICollectionViewCompositionalLayout { [unowned self] section, layoutEnvironment in
             var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
             config.headerMode = .firstItemInSection
+
+            config.trailingSwipeActionsConfigurationProvider = { indexPath in
+                let delete = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
+                    deleteAction?(indexPath)
+                    completion(true)
+                }
+                return UISwipeActionsConfiguration(actions: [delete])
+            }
+
             return NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
         }
     }()
 
     private(set) lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+
+    private var deleteAction: ((IndexPath) -> Void)?
 
     // MARK: - Initialization
 
@@ -28,7 +39,9 @@ class CollectionTodoListView: UIView {
 
     // MARK: - Public Methods
 
-    // ...
+    func configureDeleteAction(_ action: @escaping (IndexPath) -> Void) {
+        self.deleteAction = action
+    }
 
     // MARK: - Private Properties
 
