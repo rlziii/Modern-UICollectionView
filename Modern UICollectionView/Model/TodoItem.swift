@@ -5,7 +5,6 @@ struct TodoItem: Identifiable, Hashable {
     let title: String
     let icon: Icon
     let isFavorite: Bool
-    let lastModified: Date
 }
 
 extension TodoItem {
@@ -14,7 +13,6 @@ extension TodoItem {
         self.title = title
         self.icon = icon
         self.isFavorite = isFavorite
-        self.lastModified = .now
     }
 }
 

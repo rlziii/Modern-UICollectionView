@@ -26,14 +26,14 @@ class TableTodoListViewController: UIViewController {
 
         title = "Todo List"
 
-        tableTodoListView.setupTableViewDataSource(dataSource)
-
         navigationItem.rightBarButtonItem = .init(
             systemItem: .add,
             primaryAction: .init(handler: { [unowned self] _ in
                 show(CreateTodoItemViewController(onSave: saveTodoItem), sender: self)
             })
         )
+
+        tableTodoListView.setupTableViewDataSource(dataSource)
     }
 
     // MARK: - Private Methods

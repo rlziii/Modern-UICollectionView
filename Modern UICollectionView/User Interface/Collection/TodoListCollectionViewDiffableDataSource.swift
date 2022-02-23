@@ -1,25 +1,27 @@
 import UIKit
 
-enum Item: Hashable {
-    case todoItem(TodoItem)
-    case header(String)
-}
+class TodoListCollectionViewDiffableDataSource: UICollectionViewDiffableDataSource<Section, Item> {
+    // MARK: - Private Type Aliases
 
-class TodoListCollectionViewDataSource {
+    private typealias CellRegistration<I> = UICollectionView.CellRegistration<UICollectionViewListCell, I>
+
     // MARK: - Private Properties
+
     private var favoriteTodoItems = [TodoItem]()
     private var nonFavoriteTodoItems = [TodoItem]()
 
-    private let dataSource: UICollectionViewDiffableDataSource<Section, Item>
+    private var hasFavorites: Bool { !favoriteTodoItems.isEmpty }
 
-    init(with collectionView: UICollectionView) {
-        let headerRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, String> { cell, _, title in
+    // MARK: - Initialization
+
+    init(collectionView: UICollectionView) {
+        let headerRegistration = CellRegistration<String> { cell, _, title in
             var content = cell.defaultContentConfiguration()
             content.text = title
             cell.contentConfiguration = content
         }
 
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, TodoItem> { cell, _, item in
+        let cellRegistration = CellRegistration<TodoItem> { cell, _, item in
             var content = cell.defaultContentConfiguration()
             content.text = item.title
             content.image = UIImage(systemName: item.icon.rawValue)!
@@ -32,7 +34,7 @@ class TodoListCollectionViewDataSource {
             )]
         }
 
-        dataSource = .init(collectionView: collectionView) { collectionView, indexPath, item in
+        let cellProvider: CellProvider = { collectionView, indexPath, item in
             switch item {
             case .header(let header):
                 return collectionView.dequeueConfiguredReusableCell(
@@ -40,7 +42,7 @@ class TodoListCollectionViewDataSource {
                     for: indexPath,
                     item: header
                 )
-            case .todoItem(let todoItem):
+            case .row(let todoItem):
                 return collectionView.dequeueConfiguredReusableCell(
                     using: cellRegistration,
                     for: indexPath,
@@ -48,6 +50,24 @@ class TodoListCollectionViewDataSource {
                 )
             }
         }
+
+        super.init(collectionView: collectionView, cellProvider: cellProvider)
+    }
+
+    // MARK: - Public Methods
+
+    func updateData(animatingDifferences: Bool = true) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        snapshot.appendSections(Section.allCases)
+
+        let favoritesHeader = hasFavorites ? [Item.header("Favorites")] : []
+        let favorites = favoritesHeader + favoriteTodoItems.map(Item.row)
+        snapshot.appendItems(favorites, toSection: .favorites)
+
+        let nonFavorites = [Item.header("Todo Items")] + nonFavoriteTodoItems.map(Item.row)
+        snapshot.appendItems(nonFavorites, toSection: .nonFavorites)
+
+        apply(snapshot, animatingDifferences: animatingDifferences)
     }
 
     func addTodoItem(_ todoItem: TodoItem) {
@@ -58,20 +78,6 @@ class TodoListCollectionViewDataSource {
         }
 
         updateData()
-    }
-
-    func updateData(animatingDifferences: Bool = true) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot.appendSections(Section.allCases)
-
-        let favoritesHeader = favoriteTodoItems.isEmpty ? [] : [Item.header("Favorites")]
-        let favorites = favoritesHeader + favoriteTodoItems.map(Item.todoItem)
-        snapshot.appendItems(favorites, toSection: .favorites)
-
-        let nonFavorites = [Item.header("Todo Items")] + nonFavoriteTodoItems.map(Item.todoItem)
-        snapshot.appendItems(nonFavorites, toSection: .nonFavorites)
-
-        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 
     func deleteTodoItem(at indexPath: IndexPath) {
@@ -92,9 +98,12 @@ class TodoListCollectionViewDataSource {
     }
 }
 
-private extension TodoListCollectionViewDataSource {
-    enum Section: Int, CaseIterable {
-        case favorites
-        case nonFavorites
-    }
+enum Section: Int, CaseIterable {
+    case favorites
+    case nonFavorites
+}
+
+enum Item: Hashable {
+    case header(String)
+    case row(TodoItem)
 }

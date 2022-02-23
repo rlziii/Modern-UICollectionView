@@ -40,15 +40,12 @@ class TableTodoListView: UIView {
 
     private func setupTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
-
         tableView.register(
             TodoItemTableViewCell.self,
             forCellReuseIdentifier: TodoItemTableViewCell.reuseIdentifier
         )
-
         tableView.allowsSelection = false
         tableView.estimatedRowHeight = 44
-
         addSubview(tableView)
     }
 

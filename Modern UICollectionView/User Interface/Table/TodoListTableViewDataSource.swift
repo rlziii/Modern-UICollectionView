@@ -55,7 +55,7 @@ class TodoListTableViewDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return favoriteTodoItems.isEmpty ? nil : "Favorites"
+            return hasFavorites ? "Favorites" : nil
         case 1:
             return "Todo Items"
         case _:

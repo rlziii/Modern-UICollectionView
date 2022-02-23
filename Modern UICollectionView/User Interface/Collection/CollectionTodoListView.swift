@@ -3,6 +3,8 @@ import UIKit
 class CollectionTodoListView: UIView {
     // MARK: - Private Properties
 
+    private(set) lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+
     private lazy var collectionViewLayout: UICollectionViewLayout = {
         UICollectionViewCompositionalLayout { [unowned self] section, layoutEnvironment in
             var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
@@ -19,8 +21,6 @@ class CollectionTodoListView: UIView {
             return NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
         }
     }()
-
-    private(set) lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
 
     private var deleteAction: ((IndexPath) -> Void)?
 
@@ -39,7 +39,7 @@ class CollectionTodoListView: UIView {
 
     // MARK: - Public Methods
 
-    func configureDeleteAction(_ action: @escaping (IndexPath) -> Void) {
+    func setupDeleteAction(_ action: @escaping (IndexPath) -> Void) {
         self.deleteAction = action
     }
 

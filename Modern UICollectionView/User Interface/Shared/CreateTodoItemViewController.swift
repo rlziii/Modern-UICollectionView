@@ -1,7 +1,7 @@
 import UIKit
 
 class CreateTodoItemViewController: UIViewController {
-    // MARK: - Type aliases
+    // MARK: - Type Aliases
 
     typealias CreateTodoInfo = (title: String, iconIndex: Int, isFavorite: Bool)
 

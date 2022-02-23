@@ -4,7 +4,9 @@ class CollectionTodoListViewController: UIViewController {
     // MARK: - Private Properties
 
     private lazy var collectionTodoListView = CollectionTodoListView()
-    private lazy var collectionViewDataSource = TodoListCollectionViewDataSource(with: collectionTodoListView.collectionView)
+    private lazy var dataSource = TodoListCollectionViewDiffableDataSource(
+        collectionView: collectionTodoListView.collectionView
+    )
 
     // MARK: - Initialization
 
@@ -33,15 +35,15 @@ class CollectionTodoListViewController: UIViewController {
             })
         )
 
-        collectionTodoListView.configureDeleteAction(collectionViewDataSource.deleteTodoItem(at:))
+        collectionTodoListView.setupDeleteAction(dataSource.deleteTodoItem(at:))
 
         // Seed section data.
-        collectionViewDataSource.updateData(animatingDifferences: false)
+        dataSource.updateData(animatingDifferences: false)
     }
 
     // MARK: - Private Methods
 
     private func saveTodoItem(_ todoItem: TodoItem) {
-        collectionViewDataSource.addTodoItem(todoItem)
+        dataSource.addTodoItem(todoItem)
     }
 }
