@@ -24,7 +24,7 @@ class TodoListCollectionViewDiffableDataSource: UICollectionViewDiffableDataSour
         let cellRegistration = CellRegistration<TodoItem> { cell, _, item in
             var content = cell.defaultContentConfiguration()
             content.text = item.title
-            content.image = UIImage(systemName: item.icon.rawValue)!
+            content.image = UIImage(systemName: item.icon.rawValue)
             cell.contentConfiguration = content
 
             let imageView = UIImageView(image: UIImage(systemName: "star.fill"))
